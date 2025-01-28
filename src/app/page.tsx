@@ -7,7 +7,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Header } from "@/components/header/Header";
 import Link from 'next/link';
 import {MainLayout} from '@/components/mainLayout/mainLayout'
-import { Categories } from "@/components/categroies/Categories";
+import  Categories  from "@/components/categroies/Categories";
+
 import { Footer } from "@/components/footer/footer";
 import { GetServerSideProps } from "next";
 import { cookies } from "next/headers";
