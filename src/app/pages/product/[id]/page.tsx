@@ -116,18 +116,24 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
               <Separator />
 
               <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Tooltip key={i} content={`${product.rating} yulduz`}>
-                    <span
-                      className={`h-6 w-6 ${
-                        i < product.rating ? "text-yellow-500" : "text-gray-300"
-                      }`}
-                    >
-                      ★
-                    </span>
-                  </Tooltip>
-                ))}
-              </div>
+  {Array.from({ length: 5 }, (_, i) => (
+    <Tooltip key={i}>
+      <TooltipTrigger>
+        <span
+          className={`h-6 w-6 ${
+            i < product.rating ? "text-yellow-500" : "text-gray-300"
+          }`}
+        >
+          ★
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>
+        {`${product.rating} yulduz`}
+      </TooltipContent>
+    </Tooltip>
+  ))}
+</div>
+
 
               <p className="text-gray-600">RAM: {product.rame}</p>
               <p className="text-gray-600">Brend: {product.brand}</p>
