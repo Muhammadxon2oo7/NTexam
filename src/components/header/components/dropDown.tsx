@@ -11,7 +11,7 @@ import {
 import Link from 'next/link'
 import { logout } from './logout'
 
-export const DropDown = ({ userNamee }: {userNamee:string  | undefined}) => {
+export const DropDown = ({ userName }: {userName:string  | undefined}) => {
   const handleOut=async()=>{
     logout()
   }
@@ -19,7 +19,7 @@ export const DropDown = ({ userNamee }: {userNamee:string  | undefined}) => {
     <>
     <DropdownMenu>
           <DropdownMenuTrigger className="px-4 py-2 bg-gray-200 rounded-md text-sm font-medium text-gray-800 hover:bg-gray-300 truncate">
-            {userNamee}
+            {userName}
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-32">
             <DropdownMenuItem asChild>

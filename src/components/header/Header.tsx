@@ -134,9 +134,9 @@ export const Header = ({ user, userName }: { user: string | null; userName: stri
 
       {/* Agar foydalanuvchi mavjud bo'lsa, DropDown ko'rsatiladi, aks holda Modal */}
       {user ? (
-        <DropDown userNamee={userName} />
+        <DropDown userName={userName|| undefined} />
       ) : (
-        <Modal user={user} />
+        <Modal user={user|| undefined} />
       )}
     </div>
   );
