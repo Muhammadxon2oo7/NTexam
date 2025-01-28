@@ -19,7 +19,7 @@ export const Modal = ({ user }: { user: undefined | string }) => {
           <DialogHeader>
             <DialogTitle>Ro'yhatdan o'tish</DialogTitle>
             <DialogDescription>
-              <Tabs value={tabState} onValueChange={setTabState} className="w-full">
+              <Tabs value={tabState} onValueChange={(value: string) => setTabState(value as 'login' | 'register')} className="w-full">
                 <TabsList>
                   <TabsTrigger value="login">Kirish</TabsTrigger>
                   <TabsTrigger value="register">Ro'yhatdan o'tish</TabsTrigger>
