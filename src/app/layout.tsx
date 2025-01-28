@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+import { Providers } from "@/components/providers";
+import { Header } from "@/components/header/Header";
+import { cookies } from "next/headers";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ClientLayout } from "./ClientLayout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -23,13 +30,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookiesData = cookies();
+  const user = cookiesData.get('user')?.value || null;
+  const userName = cookiesData.get('userName')?.value || null;
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Providers>
+       
+          <ClientLayout user={user} userName={userName}>
+            <div className="max-w-[1440px] mx-auto">
+    
+              <Header user={user} userName={userName} />
+
+           
+              <main>{children}</main>
+              <Toaster />
+            </div>
+          </ClientLayout>
+        </Providers>
       </body>
     </html>
   );
 }
+
