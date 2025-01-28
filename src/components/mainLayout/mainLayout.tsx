@@ -2,12 +2,7 @@ import fetchWrapper from "@/service/fetchwrapper";
 import React from "react";
 import { Button } from "../ui/button";
 import { CartIcon } from "@/../public/img/home/CartIcon";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Link from "next/link";
 
 interface Product {
@@ -28,8 +23,11 @@ interface Category {
 
 type DataT = Category[];
 
-export const MainLayout = async () => {
-  let data = await fetchWrapper<DataT[]>("/categories");
+interface MainLayoutProps {
+  data: DataT;
+}
+
+export const MainLayout = ({ data }: MainLayoutProps) => {
   return (
     <div className="w-[280px] max-h-full bg-white py-[30px] pl-[29px] pr-[20px]">
       <Button className="mb-[25px]">
@@ -47,7 +45,7 @@ export const MainLayout = async () => {
                     className=" my-[5px] cursor-pointer transition-all duration-300 hover:pl-6 hover:text-primary hover:font-medium hover:marker:content-['➔'] hover:marker:text-primary"
                   >
                     <Link
-                      href={`pages/product/${product.id}`}
+                      href={`/product/${product.id}`}
                       className="block truncate w-full"
                       title={product.title} 
                     >
@@ -63,3 +61,9 @@ export const MainLayout = async () => {
     </div>
   );
 };
+
+// server-side fetching
+export async function getServerSideProps() {
+  const data = await fetchWrapper<DataT[]>("/categories");
+  return { props: { data } };
+}
