@@ -7,8 +7,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { TooltipProvider, Tooltip } from "@/components/ui/tooltip";
+import { TooltipProvider, Tooltip, TooltipContent } from "@/components/ui/tooltip";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
+import { TooltipTrigger } from '@/components/ui/tooltip';
 
 interface Product {
   img: string;
